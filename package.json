@@ -1,0 +1,24 @@
+{
+  "name": "koha-plugin-round-prices",
+  "version": "2.1.30",
+  "previous_version": "2.1.29",
+  "description": "Koha Round Prices Plugin",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bywatersolutions/koha-plugin-round-prices.git"
+  },
+  "author": "Kyle M Hall <kyle@bywatersolutions.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/bywatersolutions/koha-plugin-round-prices/issues"
+  },
+  "homepage": "https://github.com/bywatersolutions/koha-plugin-round-prices#readme",
+  "dependencies": {
+    "datetime": "0.0.3",
+    "jsonfile": "^4.0.0",
+    "node-datetime": "^2.0.0"
+  }
+}
