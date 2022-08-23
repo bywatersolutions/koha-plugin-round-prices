@@ -2,7 +2,7 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - master
     tags:
       - 'v*.*.*'
   schedule:
@@ -43,6 +43,8 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - uses: actions/checkout@v1
+
+    - uses: gautamkrishnar/keepalive-workflow@v1 # Keeps GitHub from pausing cron'ed actions
 
     - name: Get Koha Version Branch Name
       id: koha-version
