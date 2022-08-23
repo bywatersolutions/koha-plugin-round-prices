@@ -45,51 +45,6 @@ sub new {
     return $self;
 }
 
-## If your plugin needs to add some javascript in the staff intranet, you'll want
-## to return that javascript here. Don't forget to wrap your javascript in
-## <script> tags. By not adding them automatically for you, you'll have a
-## chance to include other javascript files if necessary.
-sub intranet_js {
-    my ( $self ) = @_;
-
-    return q|
-    |;
-}
-
-## If your tool is complicated enough to needs it's own setting/configuration
-## you will want to add a 'configure' method to your plugin like so.
-## Here I am throwing all the logic into the 'configure' method, but it could
-## be split up like the 'report' method is.
-sub configure {
-    my ( $self, $args ) = @_;
-    my $cgi = $self->{'cgi'};
-
-    unless ( $cgi->param('save') ) {
-        my $template = $self->get_template({ file => 'configure.tt' });
-
-        ## Grab the values we already have for our settings, if any exist
-        $template->param(
-            enable_opac_payments => $self->retrieve_data('enable_opac_payments'),
-            foo             => $self->retrieve_data('foo'),
-            bar             => $self->retrieve_data('bar'),
-            last_upgraded   => $self->retrieve_data('last_upgraded'),
-        );
-
-        $self->output_html( $template->output() );
-    }
-    else {
-        $self->store_data(
-            {
-                enable_opac_payments => $cgi->param('enable_opac_payments'),
-                foo                => $cgi->param('foo'),
-                bar                => $cgi->param('bar'),
-                last_configured_by => C4::Context->userenv->{'number'},
-            }
-        );
-        $self->go_home();
-    }
-}
-
 ## This is the 'install' method. Any database tables or other setup that should
 ## be done when the plugin if first installed should be executed in this method.
 ## The installation method should always return true if the installation succeeded
@@ -115,28 +70,6 @@ sub uninstall() {
     my ( $self, $args ) = @_;
 
     return 1;
-}
-
-## API methods
-# If your plugin implements API routes, then the 'api_routes' method needs
-# to be implemented, returning valid OpenAPI 2.0 paths serialized as a hashref.
-# It is a good practice to actually write OpenAPI 2.0 path specs in JSON on the
-# plugin and read it here. This allows to use the spec for mainline Koha later,
-# thus making this a good prototyping tool.
-
-sub api_routes {
-    my ( $self, $args ) = @_;
-
-    my $spec_str = $self->mbf_read('openapi.json');
-    my $spec     = decode_json($spec_str);
-
-    return $spec;
-}
-
-sub api_namespace {
-    my ( $self ) = @_;
-    
-    return 'roundprices';
 }
 
 =head3 cronjob_nightly

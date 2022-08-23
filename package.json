@@ -16,9 +16,4 @@
     "url": "https://github.com/bywatersolutions/koha-plugin-round-prices/issues"
   },
   "homepage": "https://github.com/bywatersolutions/koha-plugin-round-prices#readme",
-  "dependencies": {
-    "datetime": "0.0.3",
-    "jsonfile": "^4.0.0",
-    "node-datetime": "^2.0.0"
-  }
 }

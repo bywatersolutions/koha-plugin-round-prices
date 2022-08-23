@@ -1,6 +1,6 @@
 # Round Item Prices plugin for Koha
 
-Plugin to round all item prices to the nearest .05
+Plugin to round all item prices to the nearest .05 on a nightly basis.
 
 # Downloading
 
